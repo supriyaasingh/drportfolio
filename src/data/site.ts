@@ -50,11 +50,8 @@ export const links = {
  * ---------------------------------------------------
  * Only the hospital name and city are shown as fact. NO affiliation,
  * employment, role or department is claimed. Each item below (the
- * affiliation statement, photo, website, address/directions) appears
- * ONLY when its `verified` flag is set to true after confirmation.
- *
- * To add the hospital photograph: place an authorised image at
- * public/images/hospital.jpg and set `image.verified` to true.
+ * affiliation statement, website, address/directions) appears ONLY when
+ * its `verified` flag is set to true after confirmation.
  */
 export const hospital = {
   name: "Hiranandani Hospital",
@@ -71,10 +68,11 @@ export const hospital = {
   /** Shown while the affiliation is unverified. Makes no claim. */
   pendingNote:
     "Details of any professional association between Dr. Abhay Singh and this hospital will be added here once verified. For hospital-related queries, please contact the clinic.",
+  /** Photograph supplied by the practice. */
   image: {
-    src: "/images/hospital.jpg",
-    alt: "Exterior of Hiranandani Hospital, Thane",
-    verified: false,
+    src: "/images/hiranandani-hospital.jpg",
+    webp: "/images/hiranandani-hospital.webp",
+    alt: "Hiranandani Hospital, Thane",
   },
   website: {
     url: "https://www.hiranandanihospital.org",

@@ -1,20 +1,19 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { ArrowUpRight, Building2, ImageOff, MapPin, Navigation } from "lucide-react";
-import { useRef, useState } from "react";
+import { ArrowUpRight, Building2, MapPin, Navigation } from "lucide-react";
+import { useRef } from "react";
 import { hospital } from "../data/site";
 import { Button } from "./ui/Button";
 import { SectionHeading } from "./ui/SectionHeading";
 import { EASE, EASE_IN_OUT } from "./ui/motion";
 
 /**
- * Hospital affiliation. Only the hospital name, city and the affiliation
- * statement are shown as fact. Photo, website and directions are rendered
- * only once their `verified` flag in src/data/site.ts is set to true.
+ * Hospital section with the photograph supplied by the practice. The
+ * affiliation statement, website and directions are rendered only once
+ * their `verified` flag in src/data/site.ts is set to true.
  */
 export function Hospital() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const [imgFailed, setImgFailed] = useState(false);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const scale = useTransform(scrollYProgress, [0, 0.6], reduce ? [1, 1] : [1.25, 1]);
   const clip = useTransform(
@@ -23,7 +22,6 @@ export function Hospital() {
     reduce ? ["inset(0% 0% 0% 0% round 28px)", "inset(0% 0% 0% 0% round 28px)"] : ["inset(12% 10% 12% 10% round 120px)", "inset(0% 0% 0% 0% round 28px)"],
   );
 
-  const showImage = hospital.image.verified && !imgFailed;
   const directionsUrl = hospital.address.verified
     ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(hospital.address.text)}`
     : null;
@@ -38,52 +36,43 @@ export function Hospital() {
           id="hospital-title"
         />
 
-        <div ref={ref} className="mt-14 grid items-stretch gap-8 lg:grid-cols-[1.35fr_1fr]">
-          {/* Image / placeholder with scroll-driven unmasking */}
-          <motion.div style={{ clipPath: clip }} className="relative min-h-[320px] overflow-hidden bg-paper-deep sm:min-h-[440px]">
-            {showImage ? (
-              <motion.img
-                src={hospital.image.src}
-                alt={hospital.image.alt}
-                loading="lazy"
-                decoding="async"
-                onError={() => setImgFailed(true)}
-                style={{ scale }}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            ) : (
-              <motion.div style={{ scale }} className="absolute inset-0">
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,#EAF1F5_0%,#E3F4F2_100%)]" />
-                {/* Architectural line drawing — clearly a placeholder, not a photo */}
-                <svg viewBox="0 0 600 400" className="absolute inset-0 h-full w-full text-navy/15" fill="none" aria-hidden preserveAspectRatio="xMidYMid slice">
-                  <g stroke="currentColor" strokeWidth="1.5">
-                    <path d="M60 340h480" />
-                    <rect x="150" y="120" width="300" height="220" />
-                    <rect x="230" y="70" width="140" height="50" />
-                    {Array.from({ length: 5 }).map((_, r) =>
-                      Array.from({ length: 6 }).map((__, c) => (
-                        <rect key={`${r}-${c}`} x={170 + c * 46} y={140 + r * 36} width="26" height="20" />
-                      )),
-                    )}
-                    <path d="M285 85h30M300 75v20" strokeWidth="3" />
-                  </g>
-                </svg>
-                <div className="absolute inset-0 grid place-items-center p-6">
-                  <div className="max-w-sm rounded-2xl border border-dashed border-navy/30 bg-white/85 p-6 text-center backdrop-blur">
-                    <ImageOff className="mx-auto h-7 w-7 text-teal-deep" strokeWidth={1.5} />
-                    <p className="mt-3 font-medium text-navy">Hospital photograph placeholder</p>
-                    <p className="mt-1.5 text-sm text-muted">
-                      A verified, authorised photograph of {hospital.name}, {hospital.city} will appear here.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-            <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-navy/90 px-4 py-2 text-xs font-medium tracking-wide text-paper backdrop-blur">
+        <div ref={ref} className="mt-14 grid items-center gap-8 lg:grid-cols-[1.6fr_1fr]">
+          {/* Hospital photograph with scroll-driven unmasking and hover zoom */}
+          <motion.figure
+            style={{ clipPath: clip }}
+            className="group relative m-0 aspect-[16/10] overflow-hidden rounded-[28px] bg-paper-deep shadow-lift sm:aspect-[2/1]"
+          >
+            <motion.div style={{ scale }} className="absolute inset-0">
+              <picture className="block h-full w-full">
+                <source srcSet={hospital.image.webp} type="image/webp" />
+                <img
+                  src={hospital.image.src}
+                  alt={hospital.image.alt}
+                  width={1080}
+                  height={537}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover object-[55%_45%] transition-transform duration-[1.4s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.06]"
+                />
+              </picture>
+            </motion.div>
+            {/* Subtle tonal overlays */}
+            <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/75 via-navy-deep/5 to-transparent transition-opacity duration-700 group-hover:opacity-80" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-inset ring-white/15" />
+
+            <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-navy/85 px-4 py-2 text-xs font-medium tracking-wide text-paper backdrop-blur sm:left-5 sm:top-5">
               <Building2 className="h-3.5 w-3.5 text-teal" />
               {hospital.city}, Maharashtra
             </div>
-          </motion.div>
+            <figcaption className="absolute inset-x-0 bottom-0 p-5 text-paper sm:p-7">
+              <span className="translate-y-1 transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-y-0">
+                <span className="block font-display text-lg font-semibold tracking-tight sm:text-2xl">{hospital.name}</span>
+                <span className="block text-xs text-paper/75 sm:text-sm">
+                  {hospital.city}, {hospital.region}
+                </span>
+              </span>
+            </figcaption>
+          </motion.figure>
 
           {/* Details */}
           <motion.div
