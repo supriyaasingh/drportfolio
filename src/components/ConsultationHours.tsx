@@ -17,8 +17,8 @@ function SessionClock({ hour, active }: { hour: number; active: boolean }) {
   const minDeg = (hour % 1) * 360;
   return (
     <svg viewBox="0 0 200 200" className="h-full w-full" aria-hidden>
-      <circle cx="100" cy="100" r="96" fill="#FFFFFF" stroke="#C3A66B" strokeWidth="1.5" />
-      <circle cx="100" cy="100" r="86" fill="none" stroke="#173D2B" strokeOpacity=".08" />
+      <circle cx="100" cy="100" r="96" fill="#FFFFFF" stroke="#2BB3A3" strokeWidth="1.5" />
+      <circle cx="100" cy="100" r="86" fill="none" stroke="#0B2E42" strokeOpacity=".08" />
       {Array.from({ length: 60 }).map((_, i) => (
         <line
           key={i}
@@ -26,7 +26,7 @@ function SessionClock({ hour, active }: { hour: number; active: boolean }) {
           y1={i % 5 === 0 ? 18 : 22}
           x2="100"
           y2="26"
-          stroke={i % 5 === 0 ? "#173D2B" : "#A5B69B"}
+          stroke={i % 5 === 0 ? "#0B2E42" : "#9FD8D1"}
           strokeWidth={i % 5 === 0 ? 2 : 1}
           transform={`rotate(${i * 6} 100 100)`}
         />
@@ -37,9 +37,9 @@ function SessionClock({ hour, active }: { hour: number; active: boolean }) {
           x={100 + Math.sin((i * Math.PI) / 2) * 58}
           y={100 - Math.cos((i * Math.PI) / 2) * 58 + 7}
           textAnchor="middle"
-          fontFamily="Playfair Display Variable, serif"
+          fontFamily="Plus Jakarta Sans Variable, sans-serif"
           fontSize="20"
-          fill="#173D2B"
+          fill="#0B2E42"
         >
           {n}
         </text>
@@ -49,7 +49,7 @@ function SessionClock({ hour, active }: { hour: number; active: boolean }) {
         y1="100"
         x2="100"
         y2="54"
-        stroke="#173D2B"
+        stroke="#0B2E42"
         strokeWidth="5"
         strokeLinecap="round"
         style={{ originX: "100px", originY: "100px" }}
@@ -62,7 +62,7 @@ function SessionClock({ hour, active }: { hour: number; active: boolean }) {
         y1="100"
         x2="100"
         y2="34"
-        stroke="#C3A66B"
+        stroke="#2BB3A3"
         strokeWidth="3"
         strokeLinecap="round"
         style={{ originX: "100px", originY: "100px" }}
@@ -70,8 +70,8 @@ function SessionClock({ hour, active }: { hour: number; active: boolean }) {
         animate={{ rotate: active ? minDeg + 720 : 0 }}
         transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 55, damping: 16 }}
       />
-      <circle cx="100" cy="100" r="6" fill="#173D2B" />
-      <circle cx="100" cy="100" r="2.5" fill="#C3A66B" />
+      <circle cx="100" cy="100" r="6" fill="#0B2E42" />
+      <circle cx="100" cy="100" r="2.5" fill="#2BB3A3" />
     </svg>
   );
 }
@@ -80,12 +80,12 @@ function SessionClock({ hour, active }: { hour: number; active: boolean }) {
 function DayRibbon({ selected }: { selected: SlotId }) {
   return (
     <div>
-      <div className="relative h-3 rounded-full bg-forest/8">
+      <div className="relative h-3 rounded-full bg-navy/8">
         {hours.map((h, i) => (
           <motion.span
             key={h.id}
             className={`absolute top-0 h-full rounded-full transition-colors duration-500 ${
-              selected === h.id ? "bg-gold" : "bg-sage"
+              selected === h.id ? "bg-teal" : "bg-aqua"
             }`}
             style={{ left: `${(h.startHour / 24) * 100}%`, width: `${((h.endHour - h.startHour) / 24) * 100}%`, originX: 0 }}
             initial={{ scaleX: 0 }}
@@ -137,18 +137,18 @@ export function ConsultationHours() {
                   onClick={() => setSelected(h.id)}
                   onMouseEnter={() => setSelected(h.id)}
                   onFocus={() => setSelected(h.id)}
-                  className="relative flex w-full items-center gap-5 rounded-2xl border border-forest/10 p-5 text-left transition-colors duration-300 hover:border-gold/50"
+                  className="relative flex w-full items-center gap-5 rounded-2xl border border-navy/10 p-5 text-left transition-colors duration-300 hover:border-teal/50"
                 >
                   {isSel && (
                     <motion.span
                       layoutId="hours-active"
-                      className="absolute inset-0 rounded-2xl bg-forest"
+                      className="absolute inset-0 rounded-2xl bg-navy"
                       transition={{ type: "spring", stiffness: 300, damping: 32 }}
                     />
                   )}
                   <span
                     className={`relative grid h-12 w-12 shrink-0 place-items-center rounded-xl transition-colors duration-500 ${
-                      isSel ? "bg-ivory/10 text-gold" : "bg-ivory text-forest"
+                      isSel ? "bg-paper/10 text-teal" : "bg-paper text-navy"
                     }`}
                   >
                     <motion.span animate={isSel ? { rotate: h.id === "morning" ? 90 : -20 } : { rotate: 0 }} transition={{ duration: 0.8, ease: EASE }}>
@@ -156,8 +156,8 @@ export function ConsultationHours() {
                     </motion.span>
                   </span>
                   <span className="relative flex-1">
-                    <span className={`eyebrow block transition-colors ${isSel ? "text-gold" : "text-gold-deep"}`}>{h.label}</span>
-                    <span className={`mt-1 block font-serif text-2xl transition-colors sm:text-[1.7rem] ${isSel ? "text-ivory" : "text-forest"}`}>
+                    <span className={`eyebrow block transition-colors ${isSel ? "text-teal" : "text-teal-deep"}`}>{h.label}</span>
+                    <span className={`mt-1 block font-display text-2xl transition-colors sm:text-[1.7rem] ${isSel ? "text-paper" : "text-navy"}`}>
                       {h.from} – {h.to}
                     </span>
                   </span>
@@ -166,10 +166,10 @@ export function ConsultationHours() {
             })}
           </div>
 
-          <div className="mt-8 flex items-start gap-3 rounded-2xl bg-ivory p-4 text-sm text-charcoal">
-            <Info className="mt-0.5 h-4 w-4 shrink-0 text-gold-deep" />
+          <div className="mt-8 flex items-start gap-3 rounded-2xl bg-paper p-4 text-sm text-ink">
+            <Info className="mt-0.5 h-4 w-4 shrink-0 text-teal-deep" />
             <p>
-              <strong className="font-semibold text-forest">Appointments highly recommended.</strong> Timings shown are
+              <strong className="font-semibold text-navy">Appointments highly recommended.</strong> Timings shown are
               regular consultation hours and do not indicate live availability.
             </p>
           </div>
@@ -178,7 +178,7 @@ export function ConsultationHours() {
         {/* Clock card */}
         <motion.div
           ref={clockRef}
-          className="relative mx-auto w-full max-w-md rounded-[32px] bg-ivory p-8 shadow-lift sm:p-10"
+          className="relative mx-auto w-full max-w-md rounded-[32px] bg-paper p-8 shadow-lift sm:p-10"
           initial={{ opacity: 0, scale: 0.92, rotate: -2 }}
           whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
           viewport={{ once: true }}
@@ -196,8 +196,8 @@ export function ConsultationHours() {
                 exit={{ opacity: 0, y: -12, filter: "blur(4px)" }}
                 transition={{ duration: 0.4 }}
               >
-                <p className="eyebrow text-gold-deep">{current.label} Session</p>
-                <p className="mt-2 font-serif text-3xl text-forest">
+                <p className="eyebrow text-teal-deep">{current.label} Session</p>
+                <p className="mt-2 font-display text-3xl text-navy">
                   {current.from} – {current.to}
                 </p>
               </motion.div>

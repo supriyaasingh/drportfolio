@@ -9,12 +9,16 @@ export const doctor = {
   shortName: "Abhay Singh",
   initials: "AS",
   qualification: "BAMS",
-  title: "Ayurvedic Physician",
-  practice: "Independent Ayurvedic Clinical Practice",
+  /**
+   * Professional designation as provided by the practice.
+   * Verify against the doctor's medical council registration before publishing.
+   */
+  title: "General Physician",
+  practice: "Independent General Practice",
 };
 
 export const clinic = {
-  name: "Dr. Abhay Singh's Ayurvedic Clinic",
+  name: "Dr. Abhay Singh's Clinic",
   addressLines: ["Jamil Nagar,", "Bhandup West,", "Mumbai, Maharashtra, India."],
   addressShort: "Jamil Nagar, Bhandup West, Mumbai",
   locality: "Bhandup West",
@@ -42,11 +46,12 @@ export const links = {
 };
 
 /**
- * HOSPITAL AFFILIATION — EDIT AND VERIFY BEFORE PUBLISHING
- * ---------------------------------------------------------
- * Only the hospital name and city are shown as fact. Anything else
- * (photo, website, address, directions) appears ONLY when its `verified`
- * flag is set to true after you have confirmed it with the hospital.
+ * HOSPITAL SECTION — EDIT AND VERIFY BEFORE PUBLISHING
+ * ---------------------------------------------------
+ * Only the hospital name and city are shown as fact. NO affiliation,
+ * employment, role or department is claimed. Each item below (the
+ * affiliation statement, photo, website, address/directions) appears
+ * ONLY when its `verified` flag is set to true after confirmation.
  *
  * To add the hospital photograph: place an authorised image at
  * public/images/hospital.jpg and set `image.verified` to true.
@@ -58,8 +63,14 @@ export const hospital = {
   /** Neutral description that avoids claiming any role or department. */
   intro:
     "Hiranandani Hospital in Thane is a multi-speciality hospital serving the Thane and wider Mumbai Metropolitan Region.",
-  affiliationNote:
-    "Dr. Abhay Singh is affiliated with Hiranandani Hospital, Thane. For details of hospital consultations, please contact the clinic directly.",
+  affiliation: {
+    /** Shown only when verified. Describe the confirmed association exactly. */
+    text: "Dr. Abhay Singh is associated with Hiranandani Hospital, Thane.",
+    verified: false,
+  },
+  /** Shown while the affiliation is unverified. Makes no claim. */
+  pendingNote:
+    "Details of any professional association between Dr. Abhay Singh and this hospital will be added here once verified. For hospital-related queries, please contact the clinic.",
   image: {
     src: "/images/hospital.jpg",
     alt: "Exterior of Hiranandani Hospital, Thane",
@@ -79,49 +90,53 @@ export const hospital = {
 export const navItems = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
-  { id: "expertise", label: "Expertise" },
+  { id: "services", label: "Services" },
   { id: "hospital", label: "Hospital" },
   { id: "clinic", label: "Clinic" },
   { id: "contact", label: "Contact" },
 ] as const;
 
+/**
+ * Consultation services. Descriptions are deliberately general — adjust
+ * them to match the doctor's registered scope of practice.
+ */
 export const services = [
   {
-    key: "ayurvedic",
-    title: "Ayurvedic Health Solutions",
+    key: "general",
+    title: "General Health Consultations",
     description:
-      "Personalised consultations grounded in classical Ayurvedic assessment, considering your constitution, routine and health concerns.",
+      "Unhurried consultations for everyday health concerns, with a careful history, examination and clear next steps.",
   },
   {
-    key: "stress",
-    title: "Stress & Anxiety Management",
+    key: "preventive",
+    title: "Preventive Healthcare",
     description:
-      "Supportive Ayurvedic guidance on daily rhythm, rest, diet and calming practices to help you manage everyday stress.",
+      "Guidance on staying well — routine check-up planning, risk-factor awareness and timely screening advice.",
   },
   {
-    key: "digestive",
-    title: "Digestive Health & Wellness",
+    key: "illness",
+    title: "Common Illnesses",
     description:
-      "Thoughtful advice on digestion, eating habits and seasonal routines, in line with traditional Ayurvedic principles.",
+      "Consultation for common, short-term problems such as fever, cough, cold, sore throat and stomach upsets.",
   },
   {
-    key: "pain",
-    title: "Chronic Pain & Conditions",
+    key: "assessment",
+    title: "Health Assessments",
     description:
-      "Ayurvedic consultation for long-standing discomfort and chronic concerns, planned alongside any care you already receive.",
+      "General health assessments, including blood pressure and weight checks and a review of your existing reports.",
   },
   {
     key: "lifestyle",
-    title: "Lifestyle & Preventive Wellness",
+    title: "Lifestyle Guidance",
     description:
-      "Practical guidance on daily and seasonal routines to support balanced, preventive, long-term wellbeing.",
+      "Practical advice on diet, physical activity, sleep and stress to support long-term health and wellbeing.",
   },
 ] as const;
 
 export const faqs = [
   {
     q: "Do I need an appointment?",
-    a: "Walk-ins may be possible, but appointments are highly recommended so that adequate time can be given to your consultation. You can request one through the form on this page or by calling the clinic.",
+    a: "Appointments are highly recommended so that adequate time can be given to your consultation. You can request one through the form on this page or by calling the clinic.",
   },
   {
     q: "Is my appointment confirmed once I send the WhatsApp request?",
@@ -132,15 +147,15 @@ export const faqs = [
     a: "Morning: 11:00 AM – 1:00 PM. Evening: 7:00 PM – 10:30 PM. Please call ahead to confirm before visiting.",
   },
   {
-    q: "What should I bring to my first consultation?",
-    a: "Please bring any previous prescriptions, medical reports and a list of medicines or supplements you currently take. This helps the doctor understand your health history.",
+    q: "What should I bring to my consultation?",
+    a: "Please bring any previous prescriptions, recent test reports and a list of the medicines you currently take. This helps the doctor understand your health history.",
   },
   {
-    q: "Should I stop my current medicines?",
-    a: "Please do not stop or change any prescribed medicine on your own. Discuss your current treatment openly during the consultation.",
+    q: "Can I get a referral to a specialist?",
+    a: "If your condition needs specialist evaluation or tests, the doctor will advise you on the appropriate next step.",
   },
   {
     q: "Is this website for emergencies?",
-    a: "No. For a medical emergency, please call 112 or visit the nearest hospital emergency department immediately.",
+    a: "No. For a medical emergency, please call 112 or go to the nearest hospital emergency department immediately.",
   },
 ];

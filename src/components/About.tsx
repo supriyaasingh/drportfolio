@@ -1,17 +1,17 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { GraduationCap, HeartHandshake, Leaf, Stethoscope, UserRound } from "lucide-react";
+import { ClipboardList, GraduationCap, HeartHandshake, Stethoscope, UserRound } from "lucide-react";
 import { useRef } from "react";
 import { doctor } from "../data/site";
-import { Branch } from "./ui/Botanicals";
+import { PulseLine } from "./ui/MedicalVisuals";
 import { SectionHeading } from "./ui/SectionHeading";
 import { EASE, EASE_IN_OUT } from "./ui/motion";
 
 const highlights = [
-  { icon: GraduationCap, title: "BAMS Qualified", text: "Bachelor of Ayurvedic Medicine and Surgery." },
-  { icon: Stethoscope, title: "Ayurvedic Physician", text: "Clinical consultations rooted in Ayurveda." },
+  { icon: GraduationCap, title: "Qualification", text: "BAMS." },
+  { icon: Stethoscope, title: "General Physician", text: "Consultations for everyday health concerns." },
   { icon: HeartHandshake, title: "Independent Practice", text: "A personal clinic in Bhandup West, Mumbai." },
-  { icon: UserRound, title: "Personalised Consultations", text: "Guidance considered around each individual." },
-  { icon: Leaf, title: "Holistic Approach", text: "Attention to diet, routine and overall wellbeing." },
+  { icon: UserRound, title: "Personal Attention", text: "Time to listen and explain clearly." },
+  { icon: ClipboardList, title: "Prevention & Lifestyle", text: "Guidance that looks beyond the immediate symptom to long-term health." },
 ];
 
 export function About() {
@@ -29,29 +29,38 @@ export function About() {
       <motion.p
         aria-hidden
         style={{ x: labelX }}
-        className="pointer-events-none absolute -top-2 left-0 whitespace-nowrap font-serif text-[22vw] italic leading-none text-forest/[0.035] lg:text-[16vw]"
+        className="pointer-events-none absolute -top-2 left-0 whitespace-nowrap font-display text-[22vw] font-bold leading-none tracking-tight text-navy/[0.035] lg:text-[16vw]"
       >
-        Ayurveda · Care · Balance
+        Care · Trust · Wellbeing
       </motion.p>
 
       <div ref={ref} className="container-x relative grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         {/* Portrait */}
         <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-          <motion.div style={{ y: branchY }} className="absolute -left-10 -top-12 z-0 hidden w-28 text-sage sm:block">
-            <Branch />
+          <motion.div
+            aria-hidden
+            style={{ y: branchY }}
+            className="dot-grid absolute -left-10 -top-10 z-0 hidden h-44 w-44 rounded-3xl sm:block"
+          />
+          <motion.div
+            aria-hidden
+            style={{ y: branchY }}
+            className="absolute -right-6 top-1/3 z-0 hidden h-24 w-48 text-teal lg:block"
+          >
+            <PulseLine className="h-full w-full" />
           </motion.div>
 
           <div className="relative">
             <div
               aria-hidden
-              className="absolute -bottom-5 -right-5 h-full w-full rounded-[32px] bg-sage-light sm:-bottom-7 sm:-right-7"
+              className="absolute -bottom-5 -right-5 h-full w-full rounded-[32px] bg-aqua-light sm:-bottom-7 sm:-right-7"
             />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] bg-ivory-deep shadow-lift">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] bg-paper-deep shadow-lift">
               <motion.picture style={{ scale: imgScale, y: imgY }} className="block h-full w-full">
                 <source srcSet="/images/doctor-portrait.webp" type="image/webp" />
                 <img
                   src="/images/doctor-portrait.jpg"
-                  alt="Portrait of Dr. Abhay Singh, Ayurvedic physician"
+                  alt="Portrait of Dr. Abhay Singh, General Physician"
                   width={880}
                   height={1100}
                   loading="lazy"
@@ -62,7 +71,7 @@ export function About() {
               {/* Curtain reveal: two panels part vertically */}
               <motion.div
                 aria-hidden
-                className="absolute inset-0 origin-top bg-forest"
+                className="absolute inset-0 origin-top bg-navy"
                 initial={{ scaleY: 1 }}
                 whileInView={{ scaleY: 0 }}
                 viewport={{ once: true, margin: "0px 0px -20% 0px" }}
@@ -70,7 +79,7 @@ export function About() {
               />
               <motion.div
                 aria-hidden
-                className="absolute inset-0 origin-bottom bg-gold"
+                className="absolute inset-0 origin-bottom bg-teal"
                 initial={{ scaleY: 1 }}
                 whileInView={{ scaleY: 0 }}
                 viewport={{ once: true, margin: "0px 0px -20% 0px" }}
@@ -80,15 +89,15 @@ export function About() {
 
             {/* Caption plate */}
             <motion.div
-              className="absolute -bottom-6 left-6 right-6 rounded-2xl bg-forest px-5 py-4 text-ivory shadow-lift sm:left-auto sm:right-10 sm:w-64"
+              className="absolute -bottom-6 left-6 right-6 rounded-2xl bg-navy px-5 py-4 text-paper shadow-lift sm:left-auto sm:right-10 sm:w-64"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.9, ease: EASE }}
             >
-              <p className="eyebrow !text-[0.62rem] text-gold">Physician</p>
-              <p className="mt-1 font-serif text-lg">{doctor.name}</p>
-              <p className="text-sm text-ivory/70">
+              <p className="eyebrow !text-[0.62rem] text-teal">Physician</p>
+              <p className="mt-1 font-display text-lg">{doctor.name}</p>
+              <p className="text-sm text-paper/70">
                 {doctor.qualification} · {doctor.title}
               </p>
             </motion.div>
@@ -107,8 +116,8 @@ export function About() {
             variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15, delayChildren: 0.3 } } }}
           >
             {[
-              `${doctor.name} is an Ayurvedic physician holding a Bachelor of Ayurvedic Medicine and Surgery (BAMS). Through his independent clinical practice in Bhandup West, Mumbai, he offers personalised Ayurvedic consultations and holistic care.`,
-              "His approach is rooted in the traditional principles of Ayurveda, applied thoughtfully to the routines, pressures and pace of modern life. Each consultation focuses on understanding the individual — their concerns, habits and overall wellbeing — before offering guidance.",
+              `${doctor.name} (${doctor.qualification}) is a general physician running an independent practice in Jamil Nagar, Bhandup West, Mumbai. The clinic offers personal consultations for everyday health concerns, along with preventive healthcare advice and lifestyle guidance.`,
+              "Every consultation begins with listening. Time is taken to understand your symptoms, history and daily routine, to explain findings in plain language, and to agree on clear next steps — including referral to a specialist when that is the right course.",
             ].map((t, i) => (
               <motion.p
                 key={i}
@@ -137,15 +146,15 @@ export function About() {
                   hidden: { opacity: 0, x: -24 },
                   show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: EASE } },
                 }}
-                className={`group flex gap-4 rounded-2xl border border-forest/8 bg-ivory/60 p-4 transition-colors duration-500 hover:border-gold/50 hover:bg-ivory ${
+                className={`group flex gap-4 rounded-2xl border border-navy/8 bg-paper/60 p-4 transition-colors duration-500 hover:border-teal/50 hover:bg-paper ${
                   i === highlights.length - 1 ? "sm:col-span-2" : ""
                 }`}
               >
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white text-forest shadow-soft transition-all duration-500 group-hover:-rotate-6 group-hover:bg-forest group-hover:text-gold">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white text-navy shadow-soft transition-all duration-500 group-hover:-rotate-6 group-hover:bg-navy group-hover:text-teal">
                   <Icon className="h-5 w-5" strokeWidth={1.6} />
                 </span>
                 <span>
-                  <span className="block font-medium text-forest">{title}</span>
+                  <span className="block font-medium text-navy">{title}</span>
                   <span className="block text-sm text-muted">{text}</span>
                 </span>
               </motion.li>
@@ -156,7 +165,7 @@ export function About() {
           <div className="mt-12 flex items-end gap-5">
             <div className="relative">
               <motion.p
-                className="font-serif text-4xl italic text-forest sm:text-[2.6rem]"
+                className="font-display text-4xl font-semibold tracking-tight text-navy sm:text-[2.6rem]"
                 initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
                 whileInView={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
                 viewport={{ once: true }}
@@ -164,9 +173,9 @@ export function About() {
               >
                 Abhay Singh
               </motion.p>
-              <svg viewBox="0 0 260 24" className="-mt-1 w-56 text-gold" fill="none" aria-hidden>
+              <svg viewBox="0 0 260 24" className="-mt-1 w-56 text-teal" fill="none" aria-hidden>
                 <motion.path
-                  d="M2 16C40 6 90 4 130 10s90 10 128-4"
+                  d="M2 14H90l8-10 10 18 8-8h142"
                   stroke="currentColor"
                   strokeWidth="1.5"
                   strokeLinecap="round"

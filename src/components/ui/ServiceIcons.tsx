@@ -1,52 +1,31 @@
 import { motion, useReducedMotion } from "motion/react";
 
 /**
- * Custom line icons for the five service areas. Each path draws itself
- * when the card reveals, then stays as crisp 1.5px line art.
+ * Custom medical line icons for the five service areas. Each path draws
+ * itself when the card reveals, then stays as crisp line art.
  */
 const paths: Record<string, string[]> = {
-  // Mortar & pestle with a sprig — classical Ayurvedic preparation
-  ayurvedic: [
-    "M8 22h32",
-    "M10 22c0 9 6 15 14 15s14-6 14-15",
-    "M18 37l-2 5h16l-2-5",
-    "M27 21L36 6",
-    "M36 6c2-1 4 0 4 2",
-    "M14 16c-3-4-2-9 2-11 2 4 1 9-2 11Z",
-    "M14 16c4-2 8-1 9 2-4 2-8 1-9-2Z",
+  // Stethoscope — general consultations
+  general: [
+    "M11 6v11a8 8 0 0 0 16 0V6",
+    "M8 6h6M24 6h6",
+    "M19 25v6a8 8 0 0 0 16 0v-5",
+    "M32 23a3 3 0 1 0 6 0a3 3 0 1 0 -6 0",
   ],
-  // Head profile with a calm lotus inside — mind & stress
-  stress: [
-    "M30 42v-6c5-1 9-5 9-11 0-9-7-16-16-16S7 16 7 25c0 4 2 7 4 9v8",
-    "M23 29c-3-2-4-5-3-8 3 1 4 4 3 8Z",
-    "M23 29c3-2 4-5 3-8-3 1-4 4-3 8Z",
-    "M23 29c-5 0-8-2-9-5 4-1 7 1 9 5Z",
-    "M23 29c5 0 8-2 9-5-4-1-7 1-9 5Z",
+  // Shield with plus — prevention
+  preventive: ["M24 5l15 6v11c0 10-6.5 17-15 21C15.5 39 9 32 9 22V11l15-6Z", "M24 16v12", "M18 22h12"],
+  // Thermometer — common illnesses
+  illness: [
+    "M21 8a3 3 0 0 1 6 0v19a7 7 0 1 1-6 0V8Z",
+    "M24 18v14",
+    "M32 12h5M32 17h5M32 22h5",
   ],
-  // Bowl with leaf and steam — digestion & nourishment
-  digestive: [
-    "M6 26h36",
-    "M8 26c1 9 8 15 16 15s15-6 16-15",
-    "M18 41h12",
-    "M17 19c-2-3 2-5 0-8",
-    "M24 19c-2-3 2-5 0-8",
-    "M31 19c-2-3 2-5 0-8",
-    "M34 26c0-6 4-10 9-10 0 6-4 10-9 10Z",
-  ],
-  // Spine / joints with a gentle pulse — chronic pain
-  pain: [
-    "M24 5v38",
-    "M18 9h12M17 16h14M18 23h12M17 30h14M18 37h12",
-    "M4 24h6l3-6 4 12 3-6h2",
-    "M44 24h-6l-2 4",
-  ],
-  // Sun over rising leaves — daily rhythm & prevention
+  // Clipboard with pulse — health assessments
+  assessment: ["M15 9h-4v34h26V9h-4", "M18 5h12v7H18z", "M14 28h6l3-7 4 12 3-6h4"],
+  // Heart with activity — lifestyle guidance
   lifestyle: [
-    "M17 20a7 7 0 1 0 14 0a7 7 0 1 0 -14 0",
-    "M24 6v3M13 10l2 2M35 10l-2 2M8 20h3M37 20h3",
-    "M6 40h36",
-    "M24 40c0-6-4-10-10-10 0 6 4 10 10 10Z",
-    "M24 40c0-6 4-10 10-10 0 6-4 10-10 10Z",
+    "M24 40S7 30 7 17a9 9 0 0 1 17-4 9 9 0 0 1 17 4c0 13-17 23-17 23Z",
+    "M11 24h7l3-5 4 9 3-4h9",
   ],
 };
 
@@ -59,13 +38,13 @@ export function ServiceIcon({ name, className = "" }: { name: string; className?
           key={i}
           d={d}
           stroke="currentColor"
-          strokeWidth="1.6"
+          strokeWidth="1.7"
           strokeLinecap="round"
           strokeLinejoin="round"
           initial={{ pathLength: reduce ? 1 : 0 }}
           whileInView={{ pathLength: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.3 + i * 0.12, ease: "easeInOut" }}
+          transition={{ duration: 1.2, delay: 0.3 + i * 0.15, ease: "easeInOut" }}
         />
       ))}
     </svg>

@@ -9,7 +9,7 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   const uid = useId();
   return (
-    <section id="faq" className="paper-grain relative bg-ivory py-24 sm:py-32" aria-labelledby="faq-title">
+    <section id="faq" className="paper-grain relative bg-paper py-24 sm:py-32" aria-labelledby="faq-title">
       <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <SectionHeading
           eyebrow="Questions"
@@ -19,7 +19,7 @@ export function FAQ() {
           id="faq-title"
         />
         <motion.ul
-          className="divide-y divide-forest/10 border-y border-forest/10"
+          className="divide-y divide-navy/10 border-y border-navy/10"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
@@ -44,17 +44,17 @@ export function FAQ() {
                     className="group flex w-full items-center justify-between gap-6 py-6 text-left"
                   >
                     <span
-                      className={`font-serif text-xl transition-colors duration-300 sm:text-[1.4rem] ${
-                        isOpen ? "text-forest" : "text-charcoal group-hover:text-forest"
+                      className={`font-display text-xl transition-colors duration-300 sm:text-[1.4rem] ${
+                        isOpen ? "text-navy" : "text-ink group-hover:text-navy"
                       }`}
                     >
                       {f.q}
                     </span>
                     <motion.span
-                      animate={{ rotate: isOpen ? 135 : 0, backgroundColor: isOpen ? "#173D2B" : "rgba(255,255,255,0)" }}
+                      animate={{ rotate: isOpen ? 135 : 0, backgroundColor: isOpen ? "#0B2E42" : "rgba(255,255,255,0)" }}
                       transition={{ duration: 0.5, ease: EASE }}
                       className={`grid h-10 w-10 shrink-0 place-items-center rounded-full border ${
-                        isOpen ? "border-forest text-gold" : "border-forest/20 text-forest"
+                        isOpen ? "border-navy text-teal" : "border-navy/20 text-navy"
                       }`}
                     >
                       <Plus className="h-4 w-4" />

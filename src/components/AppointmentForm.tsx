@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useAnimationControls, useReducedMotion } from 
 import { AlertCircle, CalendarDays, Clock, MessageCircle, Phone, RotateCcw, Send, ShieldCheck, User } from "lucide-react";
 import { useEffect, useId, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { clinic, doctor, links } from "../data/site";
-import { Branch } from "./ui/Botanicals";
+import { PulseLine } from "./ui/MedicalVisuals";
 import { Button } from "./ui/Button";
 import { SectionHeading } from "./ui/SectionHeading";
 import { EASE } from "./ui/motion";
@@ -115,13 +115,13 @@ function Field({
   return (
     <motion.div animate={controls} className={`group relative ${className}`}>
       <div
-        className={`relative rounded-2xl border bg-white transition-[border-color,box-shadow] duration-300 focus-within:shadow-[0_0_0_4px_rgba(195,166,107,.18)] ${
-          error ? "border-red-700/60" : "border-forest/12 focus-within:border-gold"
+        className={`relative rounded-2xl border bg-white transition-[border-color,box-shadow] duration-300 focus-within:shadow-[0_0_0_4px_rgba(43,179,163,.16)] ${
+          error ? "border-red-700/60" : "border-navy/12 focus-within:border-teal"
         }`}
       >
         <span
           className={`pointer-events-none absolute left-4 top-[1.15rem] transition-colors duration-300 ${
-            error ? "text-red-700" : filled ? "text-forest" : "text-forest/40 group-focus-within:text-gold-deep"
+            error ? "text-red-700" : filled ? "text-navy" : "text-navy/40 group-focus-within:text-teal-deep"
           }`}
         >
           {icon}
@@ -130,8 +130,8 @@ function Field({
           htmlFor={id}
           className={`pointer-events-none absolute left-11 origin-left transition-all duration-300 ease-[cubic-bezier(.16,1,.3,1)] ${
             filled || float
-              ? "top-2 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-gold-deep"
-              : "top-[1.05rem] text-[0.98rem] text-muted group-focus-within:top-2 group-focus-within:text-[0.7rem] group-focus-within:font-semibold group-focus-within:uppercase group-focus-within:tracking-[0.12em] group-focus-within:text-gold-deep"
+              ? "top-2 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-teal-deep"
+              : "top-[1.05rem] text-[0.98rem] text-muted group-focus-within:top-2 group-focus-within:text-[0.7rem] group-focus-within:font-semibold group-focus-within:uppercase group-focus-within:tracking-[0.12em] group-focus-within:text-teal-deep"
           }`}
         >
           {label}
@@ -142,13 +142,13 @@ function Field({
           {filled && !error && (
             <motion.svg
               viewBox="0 0 24 24"
-              className="pointer-events-none absolute right-4 top-[1.15rem] h-5 w-5 text-forest"
+              className="pointer-events-none absolute right-4 top-[1.15rem] h-5 w-5 text-navy"
               initial={{ opacity: 0, scale: 0.6 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.6 }}
               aria-hidden
             >
-              <circle cx="12" cy="12" r="10" fill="#dfe6d8" />
+              <circle cx="12" cy="12" r="10" fill="#E3F4F2" />
               <motion.path
                 d="M7 12.5l3.2 3L17 9"
                 fill="none"
@@ -186,7 +186,7 @@ function Field({
 }
 
 const inputCls =
-  "peer block w-full appearance-none rounded-2xl bg-transparent pb-2.5 pl-11 pr-11 pt-7 text-[1rem] text-charcoal outline-none placeholder-transparent";
+  "peer block w-full appearance-none rounded-2xl bg-transparent pb-2.5 pl-11 pr-11 pt-7 text-[1rem] text-ink outline-none placeholder-transparent";
 
 export function AppointmentForm() {
   const uid = useId();
@@ -235,9 +235,9 @@ export function AppointmentForm() {
   };
 
   return (
-    <section id="appointment" className="relative overflow-hidden bg-ivory-deep py-24 sm:py-32" aria-labelledby="appointment-title">
-      <div aria-hidden className="pointer-events-none absolute -left-6 bottom-0 hidden w-40 text-forest/20 lg:block">
-        <Branch />
+    <section id="appointment" className="relative overflow-hidden bg-paper-deep py-24 sm:py-32" aria-labelledby="appointment-title">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-10 hidden h-24 text-teal/60 lg:block">
+        <PulseLine className="h-full w-full" />
       </div>
       <div className="container-x grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div className="lg:sticky lg:top-32 lg:self-start">
@@ -265,17 +265,17 @@ export function AppointmentForm() {
                 className="flex items-start gap-4"
                 variants={{ hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: EASE } } }}
               >
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-gold/60 font-serif text-sm italic text-forest">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-teal/60 font-display text-sm font-semibold text-navy">
                   {i + 1}
                 </span>
-                <span className="pt-1.5 text-charcoal">{t}</span>
+                <span className="pt-1.5 text-ink">{t}</span>
               </motion.li>
             ))}
           </motion.ol>
           <p className="mt-10 flex items-center gap-2 text-sm text-muted">
-            <Phone className="h-4 w-4 text-gold-deep" />
+            <Phone className="h-4 w-4 text-teal-deep" />
             Prefer to call?{" "}
-            <a href={links.tel} className="font-medium text-forest underline decoration-gold underline-offset-4">
+            <a href={links.tel} className="font-medium text-navy underline decoration-teal underline-offset-4">
               {clinic.phoneDisplay}
             </a>
           </p>
@@ -296,9 +296,9 @@ export function AppointmentForm() {
                 {completed}/5 complete
               </span>
             </div>
-            <div className="mt-3 h-1 overflow-hidden rounded-full bg-forest/8">
+            <div className="mt-3 h-1 overflow-hidden rounded-full bg-navy/8">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-forest to-gold"
+                className="h-full rounded-full bg-gradient-to-r from-navy to-teal"
                 animate={{ width: `${(completed / 5) * 100}%` }}
                 transition={{ type: "spring", stiffness: 120, damping: 20 }}
               />
@@ -442,7 +442,7 @@ export function AppointmentForm() {
 
                 <div className="sm:col-span-2">
                   <p className="mb-5 flex items-start gap-2 text-[0.82rem] leading-relaxed text-muted">
-                    <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-forest" />
+                    <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-navy" />
                     Your details are not stored on this website. They are only placed into a WhatsApp message that you
                     choose to send. Please avoid sharing sensitive medical details here.
                   </p>
@@ -466,7 +466,7 @@ export function AppointmentForm() {
                     cy="40"
                     r="36"
                     fill="none"
-                    stroke="#C3A66B"
+                    stroke="#2BB3A3"
                     strokeWidth="2"
                     initial={{ pathLength: 0 }}
                     animate={{ pathLength: 1 }}
@@ -475,7 +475,7 @@ export function AppointmentForm() {
                   <motion.path
                     d="M25 41l10 10 20-22"
                     fill="none"
-                    stroke="#173D2B"
+                    stroke="#0B2E42"
                     strokeWidth="3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -484,14 +484,14 @@ export function AppointmentForm() {
                     transition={{ duration: 0.6, delay: 0.7 }}
                   />
                 </svg>
-                <h3 className="mt-6 text-3xl font-medium text-forest">Your request is ready to send</h3>
+                <h3 className="mt-6 text-3xl font-medium text-navy">Your request is ready to send</h3>
                 <p className="mx-auto mt-3 max-w-md text-muted">
                   WhatsApp should now be open with your appointment request. Please press <strong>send</strong> in
                   WhatsApp. Your appointment is <strong>not yet confirmed</strong> — the clinic will reply to confirm
                   availability.
                 </p>
                 <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                  <Button href={sentUrl} external variant="gold" icon={<MessageCircle className="h-4 w-4" />}>
+                  <Button href={sentUrl} external variant="accent" icon={<MessageCircle className="h-4 w-4" />}>
                     Open WhatsApp Again
                   </Button>
                   <Button variant="outline" onClick={reset} icon={<RotateCcw className="h-4 w-4" />}>

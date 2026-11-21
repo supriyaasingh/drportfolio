@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { EASE_IN_OUT } from "./ui/motion";
 
 /**
- * Brief branded intro: a monogram traces itself inside a gold ring, then
- * the ivory curtain lifts away to reveal the hero. Kept under ~1.6s.
+ * Brief branded intro: a monogram traces itself inside a ring, then
+ * the curtain lifts away to reveal the hero. Kept under ~1.6s.
  */
 export function Preloader({ onDone }: { onDone: () => void }) {
   const reduce = useReducedMotion();
@@ -20,7 +20,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
       {show && (
         <motion.div
           key="preloader"
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-forest"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-navy"
           initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
           exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
           transition={{ duration: reduce ? 0.2 : 0.95, ease: EASE_IN_OUT }}
@@ -37,7 +37,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
                 cx="60"
                 cy="60"
                 r="56"
-                stroke="#C3A66B"
+                stroke="#2BB3A3"
                 strokeWidth="1"
                 initial={{ pathLength: 0, rotate: -90 }}
                 animate={{ pathLength: 1 }}
@@ -48,10 +48,10 @@ export function Preloader({ onDone }: { onDone: () => void }) {
                 x="60"
                 y="72"
                 textAnchor="middle"
-                fontFamily="Playfair Display Variable, Georgia, serif"
-                fontSize="38"
-                fontStyle="italic"
-                fill="#F8F6EF"
+                fontFamily="Plus Jakarta Sans Variable, sans-serif"
+                fontSize="34"
+                fontWeight="700"
+                fill="#F5F8FA"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -60,12 +60,12 @@ export function Preloader({ onDone }: { onDone: () => void }) {
               </motion.text>
             </svg>
             <motion.p
-              className="eyebrow text-gold"
+              className="eyebrow text-teal"
               initial={{ opacity: 0, letterSpacing: "0.6em" }}
               animate={{ opacity: 1, letterSpacing: "0.3em" }}
               transition={{ duration: 1.1, delay: 0.2 }}
             >
-              Ayurvedic Physician
+              General Physician
             </motion.p>
           </motion.div>
         </motion.div>

@@ -3,7 +3,7 @@ import { ArrowUpRight, Info } from "lucide-react";
 import type { MouseEvent } from "react";
 import { services } from "../data/site";
 import { scrollToId } from "../hooks/useLenis";
-import { Leaf } from "./ui/Botanicals";
+import { PlusMark } from "./ui/MedicalVisuals";
 import { SectionHeading } from "./ui/SectionHeading";
 import { ServiceIcon } from "./ui/ServiceIcons";
 import { EASE } from "./ui/motion";
@@ -16,7 +16,7 @@ function ServiceCard({ s, i }: { s: (typeof services)[number]; i: number }) {
   const py = useMotionValue(50);
   const srx = useSpring(rx, { stiffness: 180, damping: 20 });
   const sry = useSpring(ry, { stiffness: 180, damping: 20 });
-  const spotlight = useMotionTemplate`radial-gradient(420px circle at ${px}% ${py}%, rgba(195,166,107,.18), transparent 60%)`;
+  const spotlight = useMotionTemplate`radial-gradient(420px circle at ${px}% ${py}%, rgba(43,179,163,.16), transparent 60%)`;
 
   const onMove = (e: MouseEvent<HTMLElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -52,31 +52,31 @@ function ServiceCard({ s, i }: { s: (typeof services)[number]; i: number }) {
         transition={{ duration: 0.5, ease: EASE }}
         className={`group relative flex h-full flex-col overflow-hidden rounded-[28px] border p-7 sm:p-8 ${
           featured
-            ? "border-forest bg-forest text-ivory shadow-lift"
-            : "border-forest/10 bg-white text-charcoal shadow-soft hover:border-gold/50"
+            ? "border-navy bg-navy text-paper shadow-lift"
+            : "border-navy/10 bg-white text-ink shadow-soft hover:border-teal/50"
         }`}
       >
         <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: spotlight }} />
         {featured && (
-          <Leaf className="pointer-events-none absolute -bottom-10 -right-6 w-40 rotate-[24deg] text-forest-soft/60 transition-transform duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:rotate-[10deg] group-hover:scale-110" />
+          <PlusMark className="pointer-events-none absolute -bottom-12 -right-12 w-48 text-navy-soft/70 transition-transform duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:rotate-90 group-hover:scale-110" />
         )}
 
         <div className="relative flex items-start justify-between">
           <span
             className={`relative grid h-16 w-16 place-items-center rounded-2xl transition-colors duration-500 ${
-              featured ? "bg-ivory/10 text-gold" : "bg-ivory text-forest group-hover:bg-forest group-hover:text-gold"
+              featured ? "bg-paper/10 text-teal" : "bg-paper text-navy group-hover:bg-navy group-hover:text-teal"
             }`}
           >
             <ServiceIcon name={s.key} className="h-9 w-9" />
-            <span className="absolute inset-0 rounded-2xl border border-gold/0 transition-all duration-700 group-hover:scale-125 group-hover:border-gold/40 group-hover:opacity-0" />
+            <span className="absolute inset-0 rounded-2xl border border-teal/0 transition-all duration-700 group-hover:scale-125 group-hover:border-teal/40 group-hover:opacity-0" />
           </span>
-          <span className={`font-serif text-sm italic ${featured ? "text-gold" : "text-gold-deep"}`}>0{i + 1}</span>
+          <span className={`font-display text-sm font-semibold ${featured ? "text-teal" : "text-teal-deep"}`}>0{i + 1}</span>
         </div>
 
-        <h3 className={`relative mt-8 text-2xl font-medium leading-snug ${featured ? "text-ivory lg:text-[2rem]" : "text-forest"}`}>
+        <h3 className={`relative mt-8 text-2xl font-medium leading-snug ${featured ? "text-paper lg:text-[2rem]" : "text-navy"}`}>
           {s.title}
         </h3>
-        <p className={`relative mt-3 text-[0.98rem] leading-relaxed ${featured ? "text-ivory/75" : "text-muted"}`}>
+        <p className={`relative mt-3 text-[0.98rem] leading-relaxed ${featured ? "text-paper/75" : "text-muted"}`}>
           {s.description}
         </p>
 
@@ -84,13 +84,13 @@ function ServiceCard({ s, i }: { s: (typeof services)[number]; i: number }) {
           <button
             type="button"
             onClick={() => scrollToId("appointment")}
-            className={`inline-flex items-center gap-2 text-sm font-medium ${featured ? "text-gold" : "text-forest"}`}
+            className={`inline-flex items-center gap-2 text-sm font-medium ${featured ? "text-teal" : "text-navy"}`}
           >
             <span className="relative">
               Request a consultation
               <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-500 group-hover:scale-x-100" />
             </span>
-            <span className="grid h-8 w-8 place-items-center rounded-full border border-current/30 transition-all duration-500 group-hover:rotate-45 group-hover:bg-gold group-hover:text-forest-deep">
+            <span className="grid h-8 w-8 place-items-center rounded-full border border-current/30 transition-all duration-500 group-hover:rotate-45 group-hover:bg-teal group-hover:text-navy-deep">
               <ArrowUpRight className="h-4 w-4" />
             </span>
           </button>
@@ -102,12 +102,12 @@ function ServiceCard({ s, i }: { s: (typeof services)[number]; i: number }) {
 
 export function Services() {
   return (
-    <section id="expertise" className="paper-grain relative bg-ivory py-24 sm:py-32" aria-labelledby="services-title">
+    <section id="services" className="paper-grain relative bg-paper py-24 sm:py-32" aria-labelledby="services-title">
       <div className="container-x">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeading
-            eyebrow="Areas of Clinical Services"
-            title="Considered Ayurvedic care for everyday wellbeing"
+            eyebrow="Consultation Services"
+            title="Thorough care for everyday health"
             accentWords={[1, 2]}
             id="services-title"
           />
@@ -143,8 +143,8 @@ export function Services() {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          <Info className="mt-0.5 h-4 w-4 shrink-0 text-gold-deep" />
-          Ayurvedic consultation is intended to complement, not replace, the advice of your treating doctors. Individual
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-teal-deep" />
+          Services are offered within the doctor's scope of practice. Where specialist evaluation or tests are needed, you will be advised accordingly. Individual
           responses vary and no specific outcome is guaranteed.
         </motion.p>
       </div>

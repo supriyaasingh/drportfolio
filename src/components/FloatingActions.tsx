@@ -31,7 +31,7 @@ export function FloatingActions({ ready }: { ready: boolean }) {
               type="button"
               onClick={() => scrollToId("home")}
               aria-label="Back to top"
-              className="relative grid h-14 w-14 place-items-center rounded-full bg-white text-forest shadow-lift"
+              className="relative grid h-14 w-14 place-items-center rounded-full bg-white text-navy shadow-lift"
               initial={{ opacity: 0, scale: 0.4, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.4, y: 20 }}
@@ -39,8 +39,8 @@ export function FloatingActions({ ready }: { ready: boolean }) {
               transition={{ duration: 0.5, ease: EASE }}
             >
               <svg viewBox="0 0 56 56" className="absolute inset-0 -rotate-90" aria-hidden>
-                <circle cx="28" cy="28" r="26" fill="none" stroke="#173D2B" strokeOpacity=".08" strokeWidth="2" />
-                <motion.circle cx="28" cy="28" r="26" fill="none" stroke="#C3A66B" strokeWidth="2" style={{ pathLength: ring }} />
+                <circle cx="28" cy="28" r="26" fill="none" stroke="#0B2E42" strokeOpacity=".08" strokeWidth="2" />
+                <motion.circle cx="28" cy="28" r="26" fill="none" stroke="#2BB3A3" strokeWidth="2" style={{ pathLength: ring }} />
               </svg>
               <ArrowUp className="h-5 w-5" />
             </motion.button>
@@ -52,14 +52,14 @@ export function FloatingActions({ ready }: { ready: boolean }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          className="group relative flex h-14 items-center gap-0 overflow-hidden rounded-full bg-[#1f7a4d] pl-4 pr-4 text-white shadow-lift"
+          className="group relative flex h-14 items-center gap-0 overflow-hidden rounded-full bg-[#1F8A5B] pl-4 pr-4 text-white shadow-lift"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={ready ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.7, delay: 1.6, ease: EASE }}
           whileHover={{ y: -4 }}
         >
           <motion.span
-            className="absolute inset-0 rounded-full bg-[#1f7a4d]"
+            className="absolute inset-0 rounded-full bg-[#1F8A5B]"
             animate={{ scale: [1, 1.12, 1], opacity: [0.5, 0, 0.5] }}
             transition={{ duration: 2.6, repeat: Infinity }}
             aria-hidden
@@ -75,7 +75,7 @@ export function FloatingActions({ ready }: { ready: boolean }) {
       <AnimatePresence>
         {ready && (
           <motion.div
-            className="fixed inset-x-0 bottom-0 z-40 border-t border-forest/10 bg-ivory/90 px-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] pt-3 backdrop-blur-xl sm:hidden"
+            className="fixed inset-x-0 bottom-0 z-40 border-t border-navy/10 bg-paper/90 px-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] pt-3 backdrop-blur-xl sm:hidden"
             initial={{ y: "100%" }}
             animate={{ y: visible ? 0 : "100%" }}
             transition={{ duration: 0.6, ease: EASE }}
@@ -83,7 +83,7 @@ export function FloatingActions({ ready }: { ready: boolean }) {
             <div className="grid grid-cols-[auto_auto_1fr] gap-2">
               <a
                 href={links.tel}
-                className="grid h-12 w-12 place-items-center rounded-full border border-forest/15 bg-white text-forest"
+                className="grid h-12 w-12 place-items-center rounded-full border border-navy/15 bg-white text-navy"
                 aria-label="Call the clinic"
               >
                 <Phone className="h-5 w-5" />
@@ -92,7 +92,7 @@ export function FloatingActions({ ready }: { ready: boolean }) {
                 href={links.whatsapp("Hello Dr. Abhay Singh, I would like to enquire about a consultation.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="grid h-12 w-12 place-items-center rounded-full bg-[#1f7a4d] text-white"
+                className="grid h-12 w-12 place-items-center rounded-full bg-[#1F8A5B] text-white"
                 aria-label="Chat on WhatsApp"
               >
                 <WhatsAppGlyph className="h-5 w-5" />
@@ -100,7 +100,7 @@ export function FloatingActions({ ready }: { ready: boolean }) {
               <button
                 type="button"
                 onClick={() => scrollToId("appointment")}
-                className="flex h-12 items-center justify-center gap-2 rounded-full bg-forest text-sm font-medium text-ivory"
+                className="flex h-12 items-center justify-center gap-2 rounded-full bg-navy text-sm font-medium text-paper"
               >
                 <CalendarCheck className="h-4 w-4" /> Book Appointment
               </button>

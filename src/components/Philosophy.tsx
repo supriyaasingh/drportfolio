@@ -1,31 +1,31 @@
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { useRef } from "react";
-import { Branch, Mandala } from "./ui/Botanicals";
+import { PulseLine, Rings } from "./ui/MedicalVisuals";
 import { SectionHeading } from "./ui/SectionHeading";
 import { EASE } from "./ui/motion";
 
 const statement =
-  "Ayurveda views health as a balance between body, mind and daily life. The practice brings this time-honoured perspective into a calm, attentive consultation — one that respects your story, your routine and the care you already receive.";
+  "Good healthcare starts with being heard. Every consultation is unhurried and attentive — understanding your symptoms and history, explaining things clearly, and helping you make informed decisions about your health.";
 
 const pillars = [
   {
     n: "01",
-    title: "Personalised Consultations",
-    text: "Time is taken to understand your concerns, habits and health history before any guidance is offered.",
+    title: "Listen & Understand",
+    text: "A careful history and examination to understand your concern in the context of your overall health.",
   },
   {
     n: "02",
-    title: "Traditional Ayurvedic Principles",
-    text: "Guidance draws on classical Ayurvedic concepts of constitution, digestion, daily routine and seasonal rhythm.",
+    title: "Explain Clearly",
+    text: "Findings and options explained in plain language, so you know what to expect and why.",
   },
   {
     n: "03",
-    title: "Lifestyle-Oriented Wellness",
-    text: "Practical, sustainable suggestions on diet, rest and routine that fit into modern working lives.",
+    title: "Prevent & Guide",
+    text: "Practical preventive and lifestyle advice, with referral to specialists when it is needed.",
   },
 ];
 
-const terms = ["Āhāra · Diet", "Vihāra · Lifestyle", "Dinacharyā · Daily Routine", "Ṛtucharyā · Seasonal Routine", "Prakṛti · Constitution"];
+const terms = ["General Consultations", "Preventive Healthcare", "Common Illnesses", "Health Assessments", "Lifestyle Guidance"];
 
 function Word({ word, progress, range }: { word: string; progress: MotionValue<number>; range: [number, number] }) {
   const opacity = useTransform(progress, range, [0.18, 1]);
@@ -45,10 +45,10 @@ function ScrollStatement() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
   const words = statement.split(" ");
   if (reduce) {
-    return <p className="font-serif text-[1.7rem] leading-[1.35] text-ivory sm:text-4xl lg:text-[2.75rem]">{statement}</p>;
+    return <p className="font-display text-[1.6rem] font-medium leading-[1.35] tracking-tight text-paper sm:text-4xl lg:text-[2.6rem]">{statement}</p>;
   }
   return (
-    <p ref={ref} className="font-serif text-[1.7rem] leading-[1.35] text-ivory sm:text-4xl lg:text-[2.75rem]" aria-label={statement}>
+    <p ref={ref} className="font-display text-[1.6rem] font-medium leading-[1.35] tracking-tight text-paper sm:text-4xl lg:text-[2.6rem]" aria-label={statement}>
       <span aria-hidden>
         {words.map((w, i) => {
           const start = i / words.length;
@@ -70,29 +70,29 @@ export function Philosophy() {
   return (
     <section
       ref={ref}
-      className="relative isolate overflow-hidden bg-forest py-24 text-ivory sm:py-32"
+      className="relative isolate overflow-hidden bg-navy py-24 text-paper sm:py-32"
       aria-labelledby="philosophy-title"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_80%_0%,#24543d_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_80%_0%,#134563_0%,transparent_60%)]" />
         <motion.div
           style={{ rotate }}
-          className="absolute -left-[30%] top-[10%] w-[110vw] max-w-[1100px] text-gold/[0.08] sm:-left-[15%] lg:-left-[10%]"
+          className="absolute -left-[30%] top-[10%] w-[110vw] max-w-[1100px] text-teal/[0.08] sm:-left-[15%] lg:-left-[10%]"
         >
           <motion.div animate={reduce ? {} : { rotate: 360 }} transition={{ duration: 160, repeat: Infinity, ease: "linear" }}>
-            <Mandala className="h-full w-full" />
+            <Rings className="h-full w-full" />
           </motion.div>
         </motion.div>
-        <motion.div style={{ y: branchY }} className="absolute right-4 top-24 hidden w-32 text-sage/40 lg:block">
-          <Branch />
+        <motion.div style={{ y: branchY }} className="absolute bottom-[38%] right-0 hidden h-28 w-[45%] text-teal/50 lg:block">
+          <PulseLine className="h-full w-full" />
         </motion.div>
       </div>
 
       <div className="container-x">
         <SectionHeading
-          eyebrow="Healthcare Philosophy"
-          title="Traditional Wisdom. Thoughtful Modern Care."
-          accentWords={[3, 4]}
+          eyebrow="Approach to Care"
+          title="Attentive Care. Clear Guidance."
+          accentWords={[2, 3]}
           tone="light"
           id="philosophy-title"
         />
@@ -102,7 +102,7 @@ export function Philosophy() {
         </div>
 
         <motion.div
-          className="mt-20 grid gap-px overflow-hidden rounded-[28px] border border-ivory/10 bg-ivory/10 md:grid-cols-3"
+          className="mt-20 grid gap-px overflow-hidden rounded-[28px] border border-paper/10 bg-paper/10 md:grid-cols-3"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
@@ -115,11 +115,11 @@ export function Philosophy() {
                 hidden: { opacity: 0 },
                 show: { opacity: 1, transition: { duration: 0.6 } },
               }}
-              className="group relative bg-forest p-8 transition-colors duration-700 hover:bg-forest-soft sm:p-10"
+              className="group relative bg-navy p-8 transition-colors duration-700 hover:bg-navy-soft sm:p-10"
             >
               <div className="overflow-hidden">
                 <motion.p
-                  className="font-serif text-6xl italic text-gold/90"
+                  className="font-display text-6xl font-bold tracking-tight text-teal/90"
                   variants={{
                     hidden: { y: "100%" },
                     show: { y: "0%", transition: { duration: 1, ease: EASE } },
@@ -129,7 +129,7 @@ export function Philosophy() {
                 </motion.p>
               </div>
               <motion.span
-                className="mt-6 block h-px w-full origin-left bg-ivory/20"
+                className="mt-6 block h-px w-full origin-left bg-paper/20"
                 variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 1.2, ease: EASE, delay: 0.2 } } }}
               />
               <motion.h3
@@ -139,24 +139,24 @@ export function Philosophy() {
                 {p.title}
               </motion.h3>
               <motion.p
-                className="mt-3 leading-relaxed text-ivory/70"
+                className="mt-3 leading-relaxed text-paper/70"
                 variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4 } } }}
               >
                 {p.text}
               </motion.p>
-              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-gold transition-all duration-700 group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-teal transition-all duration-700 group-hover:w-full" />
             </motion.div>
           ))}
         </motion.div>
       </div>
 
       {/* Scroll-driven term ribbon */}
-      <div className="mt-20 overflow-hidden border-y border-ivory/10 py-6" aria-label="Core Ayurvedic concepts">
+      <div className="mt-20 overflow-hidden border-y border-paper/10 py-6" aria-label="Areas of care">
         <motion.ul style={{ x: marqueeX }} className="flex w-max gap-12 whitespace-nowrap px-6">
           {[...terms, ...terms].map((t, i) => (
-            <li key={i} className="flex items-center gap-12 font-serif text-2xl italic text-ivory/60 sm:text-3xl" aria-hidden={i >= terms.length}>
+            <li key={i} className="flex items-center gap-12 font-display text-2xl font-medium tracking-tight text-paper/60 sm:text-3xl" aria-hidden={i >= terms.length}>
               {t}
-              <span className="h-2 w-2 rotate-45 bg-gold/70" />
+              <span className="text-teal/80">+</span>
             </li>
           ))}
         </motion.ul>

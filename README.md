@@ -1,6 +1,8 @@
-# Dr. Abhay Singh — Ayurvedic Physician Website
+# Dr. Abhay Singh — General Physician Website
 
-Portfolio and practice website for Dr. Abhay Singh, BAMS, Ayurvedic Physician, Jamil Nagar, Bhandup West, Mumbai.
+Portfolio and practice website for Dr. Abhay Singh, BAMS, General Physician, Jamil Nagar, Bhandup West, Mumbai.
+
+> **Verify before publishing:** the designation "General Physician" is shown as provided. Confirm it matches the doctor's medical council registration and permitted designation, and adjust the service descriptions in `src/data/site.ts` to the actual scope of practice.
 
 Built with React 18, Vite, TypeScript, Tailwind CSS v4, Motion (Framer Motion), Lenis smooth scrolling and Lucide icons.
 
@@ -26,17 +28,18 @@ To test on your phone, connect it to the same Wi-Fi network and open the **Netwo
 
 All facts live in **`src/data/site.ts`**: doctor details, clinic address, phone number, timings, services, FAQ and hospital affiliation. Components read from this file, so you don't need to edit them to change content.
 
-### Hospital affiliation: verify before publishing
+### Hospital section: verify before publishing
 
-The hospital section shows only the hospital name, the city and a neutral affiliation statement. Everything else stays hidden until you confirm it and set its `verified` flag to `true` in `src/data/site.ts`:
+The hospital section shows only the hospital name, the city and a neutral description. It does **not** claim any affiliation or employment. Everything else stays hidden until you confirm it and set its `verified` flag to `true` in `src/data/site.ts`:
 
 | Item | Flag | Current status |
 | --- | --- | --- |
+| Affiliation statement | `hospital.affiliation.verified` | Hidden. A neutral "details will be added once verified" note is shown instead. |
 | Hospital photograph | `hospital.image.verified` | A clearly marked placeholder is shown. Add an authorised photo at `public/images/hospital.jpg`. |
 | Hospital website link | `hospital.website.verified` | Hidden. `hiranandanihospital.org` was found only through third-party sources. |
 | Address and directions | `hospital.address.verified` | Hidden. The address listed by directories needs confirming. |
 
-Also review `hospital.intro` and `hospital.affiliationNote` with the doctor.
+Also review `hospital.intro` and `hospital.affiliation.text` with the doctor.
 
 ## Images
 
@@ -68,7 +71,7 @@ src/
     ClinicLocation, ConsultationHours, AppointmentForm, FAQ, Contact,
     Footer, FloatingActions, PrivacyPolicy
     ui/  Button (magnetic), SplitText, Reveal, SectionHeading,
-         Botanicals (SVG leaves, branch, mandala), ServiceIcons, motion presets
+         MedicalVisuals (ECG pulse line, instrument rings, plus marks), ServiceIcons, motion presets
 ```
 
 ## Accessibility and motion

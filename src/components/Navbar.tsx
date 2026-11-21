@@ -62,7 +62,7 @@ export function Navbar({ ready }: { ready: boolean }) {
         <div
           className={`transition-[background-color,box-shadow,backdrop-filter] duration-500 ${
             scrolled || open
-              ? "bg-ivory/85 shadow-[0_1px_0_rgba(23,61,43,.08),0_10px_30px_-18px_rgba(23,61,43,.35)] backdrop-blur-xl"
+              ? "bg-paper/85 shadow-[0_1px_0_rgba(11,46,66,.08),0_10px_30px_-18px_rgba(11,46,66,.35)] backdrop-blur-xl"
               : "bg-transparent"
           }`}
         >
@@ -79,12 +79,12 @@ export function Navbar({ ready }: { ready: boolean }) {
               className="group flex min-w-0 items-center gap-2.5 sm:gap-3"
               aria-label={`${doctor.name} — home`}
             >
-              <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full bg-forest text-ivory sm:h-11 sm:w-11">
-                <span className="font-serif text-[1.05rem] italic">AS</span>
-                <span className="absolute inset-[3px] rounded-full border border-gold/60 transition-transform duration-700 group-hover:rotate-180 group-hover:scale-90" />
+              <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full bg-navy text-paper sm:h-11 sm:w-11">
+                <span className="font-display text-[0.95rem] font-semibold">AS</span>
+                <span className="absolute inset-[3px] rounded-full border border-teal/60 transition-transform duration-700 group-hover:rotate-180 group-hover:scale-90" />
               </span>
               <span className="leading-tight">
-                <span className="block font-serif text-[1.05rem] font-semibold text-forest sm:text-[1.15rem]">{doctor.name}</span>
+                <span className="block font-display text-[1.02rem] font-bold tracking-tight text-navy sm:text-[1.1rem]">{doctor.name}</span>
                 <span className="block text-[0.6rem] font-medium uppercase tracking-[0.12em] text-muted sm:text-[0.68rem] sm:tracking-[0.2em]">
                   {doctor.qualification} · {doctor.title}
                 </span>
@@ -102,15 +102,15 @@ export function Navbar({ ready }: { ready: boolean }) {
                     }}
                     aria-current={active === item.id ? "true" : undefined}
                     className={`group relative px-3.5 py-2 text-[0.92rem] font-medium transition-colors ${
-                      active === item.id ? "text-forest" : "text-charcoal/70 hover:text-forest"
+                      active === item.id ? "text-navy" : "text-ink/70 hover:text-navy"
                     }`}
                   >
                     {item.label}
-                    <span className="absolute inset-x-3.5 bottom-1 h-px origin-right scale-x-0 bg-gold transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:origin-left group-hover:scale-x-100" />
+                    <span className="absolute inset-x-3.5 bottom-1 h-px origin-right scale-x-0 bg-teal transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:origin-left group-hover:scale-x-100" />
                     {active === item.id && (
                       <motion.span
                         layoutId="nav-active"
-                        className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-gold"
+                        className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-teal"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -132,24 +132,24 @@ export function Navbar({ ready }: { ready: boolean }) {
               <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
-                className="relative grid h-11 w-11 shrink-0 place-items-center rounded-full border border-forest/15 bg-white/50 lg:hidden"
+                className="relative grid h-11 w-11 shrink-0 place-items-center rounded-full border border-navy/15 bg-white/50 lg:hidden"
                 aria-expanded={open}
                 aria-controls="mobile-menu"
                 aria-label={open ? "Close menu" : "Open menu"}
               >
                 <span className="relative block h-3.5 w-5">
                   <motion.span
-                    className="absolute left-0 top-0 h-[1.5px] w-5 rounded bg-forest"
+                    className="absolute left-0 top-0 h-[1.5px] w-5 rounded bg-navy"
                     animate={open ? { top: "50%", rotate: 45, y: "-50%" } : { top: "0%", rotate: 0, y: "0%" }}
                     transition={{ duration: 0.4, ease: EASE }}
                   />
                   <motion.span
-                    className="absolute left-0 top-1/2 h-[1.5px] w-3.5 -translate-y-1/2 rounded bg-forest"
+                    className="absolute left-0 top-1/2 h-[1.5px] w-3.5 -translate-y-1/2 rounded bg-navy"
                     animate={{ opacity: open ? 0 : 1, x: open ? 8 : 0 }}
                     transition={{ duration: 0.3 }}
                   />
                   <motion.span
-                    className="absolute bottom-0 left-0 h-[1.5px] w-5 rounded bg-forest"
+                    className="absolute bottom-0 left-0 h-[1.5px] w-5 rounded bg-navy"
                     animate={open ? { bottom: "50%", rotate: -45, y: "50%" } : { bottom: "0%", rotate: 0, y: "0%" }}
                     transition={{ duration: 0.4, ease: EASE }}
                   />
@@ -160,7 +160,7 @@ export function Navbar({ ready }: { ready: boolean }) {
           {/* Scroll progress indicator */}
           <motion.div
             aria-hidden
-            className="h-[2px] origin-left bg-gradient-to-r from-gold via-gold to-sage"
+            className="h-[2px] origin-left bg-gradient-to-r from-teal via-teal to-aqua"
             style={{ scaleX: progress, opacity: scrolled ? 1 : 0 }}
           />
         </div>
@@ -170,7 +170,7 @@ export function Navbar({ ready }: { ready: boolean }) {
         {open && (
           <motion.div
             id="mobile-menu"
-            className="fixed inset-0 z-40 flex flex-col bg-forest text-ivory lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-navy text-paper lg:hidden"
             initial={{ clipPath: "circle(0% at calc(100% - 42px) 44px)" }}
             animate={{ clipPath: "circle(150% at calc(100% - 42px) 44px)" }}
             exit={{ clipPath: "circle(0% at calc(100% - 42px) 44px)" }}
@@ -193,7 +193,7 @@ export function Navbar({ ready }: { ready: boolean }) {
               {navItems.map((item, i) => (
                 <motion.li
                   key={item.id}
-                  className="overflow-hidden border-b border-ivory/10"
+                  className="overflow-hidden border-b border-paper/10"
                   variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } }}
                 >
                   <a
@@ -204,10 +204,10 @@ export function Navbar({ ready }: { ready: boolean }) {
                     }}
                     className="flex items-baseline justify-between py-4"
                   >
-                    <span className={`font-serif text-[2rem] ${active === item.id ? "italic text-gold" : ""}`}>
+                    <span className={`font-display text-[2rem] ${active === item.id ? "text-teal" : ""}`}>
                       {item.label}
                     </span>
-                    <span className="text-xs tracking-[0.2em] text-ivory/40">0{i + 1}</span>
+                    <span className="text-xs tracking-[0.2em] text-paper/40">0{i + 1}</span>
                   </a>
                 </motion.li>
               ))}
@@ -218,7 +218,7 @@ export function Navbar({ ready }: { ready: boolean }) {
               animate={{ opacity: 1, y: 0, transition: { delay: 0.6 } }}
               exit={{ opacity: 0 }}
             >
-              <Button variant="gold" onClick={() => go("appointment")} icon={<CalendarCheck className="h-4 w-4" />}>
+              <Button variant="accent" onClick={() => go("appointment")} icon={<CalendarCheck className="h-4 w-4" />}>
                 Book Appointment
               </Button>
               <Button variant="outline-light" href={links.tel} icon={<Phone className="h-4 w-4" />}>

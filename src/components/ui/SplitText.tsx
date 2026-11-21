@@ -27,7 +27,7 @@ export function SplitText({
   as: Tag = "h2",
   className,
   accentWords = [],
-  accentClassName = "italic text-gold-deep",
+  accentClassName = "text-teal-deep",
   delay = 0,
   stagger = 0.06,
   inView = true,

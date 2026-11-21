@@ -42,12 +42,12 @@ export function Reveal({
   );
 }
 
-/** Thin gold rule that draws itself from the left. */
+/** Thin accent rule that draws itself from the left. */
 export function DrawLine({ className = "", delay = 0 }: { className?: string; delay?: number }) {
   return (
     <motion.span
       aria-hidden
-      className={`block h-px origin-left bg-gold ${className}`}
+      className={`block h-px origin-left bg-teal ${className}`}
       initial={{ scaleX: 0 }}
       whileInView={{ scaleX: 1 }}
       viewport={{ once: true }}

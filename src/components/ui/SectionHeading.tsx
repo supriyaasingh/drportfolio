@@ -24,11 +24,11 @@ export function SectionHeading({ eyebrow, title, accentWords, intro, align = "le
         viewport={{ once: true }}
       >
         <motion.span
-          className="h-px w-10 origin-left bg-gold"
+          className="h-px w-10 origin-left bg-teal"
           variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.9, ease: EASE } } }}
         />
         <motion.span
-          className={`eyebrow ${light ? "text-gold" : "text-gold-deep"}`}
+          className={`eyebrow ${light ? "text-teal" : "text-teal-deep"}`}
           variants={{
             hidden: { opacity: 0, x: -10, letterSpacing: "0.4em" },
             show: { opacity: 1, x: 0, letterSpacing: "0.22em", transition: { duration: 1, ease: EASE, delay: 0.15 } },
@@ -38,7 +38,7 @@ export function SectionHeading({ eyebrow, title, accentWords, intro, align = "le
         </motion.span>
         {center && (
           <motion.span
-            className="h-px w-10 origin-right bg-gold"
+            className="h-px w-10 origin-right bg-teal"
             variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.9, ease: EASE } } }}
           />
         )}
@@ -47,12 +47,12 @@ export function SectionHeading({ eyebrow, title, accentWords, intro, align = "le
         id={id}
         text={title}
         accentWords={accentWords}
-        accentClassName={light ? "italic text-gold" : "italic text-gold-deep"}
-        className={`text-[2.15rem] font-medium leading-[1.08] sm:text-5xl lg:text-[3.4rem] ${light ? "text-ivory" : "text-forest"}`}
+        accentClassName={light ? "text-teal" : "text-teal-deep"}
+        className={`text-[2.15rem] font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem] ${light ? "text-paper" : "text-navy"}`}
       />
       {intro && (
         <motion.p
-          className={`mt-6 text-[1.05rem] leading-relaxed ${light ? "text-ivory/75" : "text-muted"} ${center ? "mx-auto" : ""} max-w-xl`}
+          className={`mt-6 text-[1.05rem] leading-relaxed ${light ? "text-paper/75" : "text-muted"} ${center ? "mx-auto" : ""} max-w-xl`}
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

@@ -1,29 +1,29 @@
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 import type { MouseEvent, ReactNode } from "react";
 
-type Variant = "primary" | "gold" | "outline" | "ghost-light" | "outline-light";
+type Variant = "primary" | "accent" | "outline" | "ghost-light" | "outline-light";
 
 const styles: Record<Variant, string> = {
-  primary: "bg-forest text-ivory shadow-[0_14px_30px_-14px_rgba(23,61,43,.7)]",
-  gold: "bg-gold text-forest-deep shadow-[0_14px_30px_-14px_rgba(156,128,69,.8)]",
-  outline: "border border-forest/25 text-forest bg-white/40 backdrop-blur-sm",
-  "outline-light": "border border-ivory/30 text-ivory",
-  "ghost-light": "bg-ivory/10 text-ivory border border-ivory/15",
+  primary: "bg-navy text-paper shadow-[0_14px_30px_-14px_rgba(11,46,66,.7)]",
+  accent: "bg-teal text-navy-deep shadow-[0_14px_30px_-14px_rgba(14,124,114,.7)]",
+  outline: "border border-navy/25 text-navy bg-white/40 backdrop-blur-sm",
+  "outline-light": "border border-paper/30 text-paper",
+  "ghost-light": "bg-paper/10 text-paper border border-paper/15",
 };
 
 const fill: Record<Variant, string> = {
-  primary: "bg-forest-soft",
-  gold: "bg-[#d4bb85]",
-  outline: "bg-forest",
-  "outline-light": "bg-ivory",
-  "ghost-light": "bg-ivory/20",
+  primary: "bg-navy-soft",
+  accent: "bg-[#5FD0C2]",
+  outline: "bg-navy",
+  "outline-light": "bg-paper",
+  "ghost-light": "bg-paper/20",
 };
 
 const hoverText: Record<Variant, string> = {
   primary: "",
-  gold: "",
-  outline: "group-hover:text-ivory",
-  "outline-light": "group-hover:text-forest",
+  accent: "",
+  outline: "group-hover:text-paper",
+  "outline-light": "group-hover:text-navy",
   "ghost-light": "",
 };
 

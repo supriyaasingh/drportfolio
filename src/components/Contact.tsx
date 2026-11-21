@@ -64,20 +64,20 @@ export function Contact() {
                 show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease: EASE } },
               }}
               whileHover={reduce ? {} : { y: -8 }}
-              className="group relative overflow-hidden rounded-[28px] border border-forest/10 bg-ivory p-8 transition-colors duration-500 hover:border-forest"
+              className="group relative overflow-hidden rounded-[28px] border border-navy/10 bg-paper p-8 transition-colors duration-500 hover:border-navy"
             >
-              <span className="absolute inset-0 origin-bottom scale-y-0 bg-forest transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-y-100" />
+              <span className="absolute inset-0 origin-bottom scale-y-0 bg-navy transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-y-100" />
               <div className="relative flex items-start justify-between">
-                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white text-forest shadow-soft transition-colors duration-500 group-hover:bg-ivory/10 group-hover:text-gold">
+                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white text-navy shadow-soft transition-colors duration-500 group-hover:bg-paper/10 group-hover:text-teal">
                   <Icon className="h-6 w-6" strokeWidth={1.5} />
                 </span>
-                <ArrowUpRight className="h-6 w-6 text-forest/40 transition-all duration-500 group-hover:rotate-45 group-hover:text-gold" />
+                <ArrowUpRight className="h-6 w-6 text-navy/40 transition-all duration-500 group-hover:rotate-45 group-hover:text-teal" />
               </div>
-              <p className="eyebrow relative mt-10 text-gold-deep transition-colors duration-500 group-hover:text-gold">{label}</p>
-              <p className="relative mt-2 font-serif text-2xl text-forest transition-colors duration-500 group-hover:text-ivory">
+              <p className="eyebrow relative mt-10 text-teal-deep transition-colors duration-500 group-hover:text-teal">{label}</p>
+              <p className="relative mt-2 font-display text-2xl text-navy transition-colors duration-500 group-hover:text-paper">
                 {value}
               </p>
-              <p className="relative mt-6 text-sm font-medium text-forest transition-colors duration-500 group-hover:text-ivory/80">
+              <p className="relative mt-6 text-sm font-medium text-navy transition-colors duration-500 group-hover:text-paper/80">
                 {cta} →
               </p>
             </motion.a>
@@ -85,26 +85,26 @@ export function Contact() {
         </motion.div>
 
         <motion.div
-          className="mt-5 flex flex-col items-center justify-between gap-6 rounded-[28px] bg-forest p-8 text-ivory sm:p-10 md:flex-row"
+          className="mt-5 flex flex-col items-center justify-between gap-6 rounded-[28px] bg-navy p-8 text-paper sm:p-10 md:flex-row"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: EASE, delay: 0.2 }}
         >
           <div className="flex items-center gap-5">
-            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-gold/50 text-gold">
+            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-teal/50 text-teal">
               <Clock className="h-6 w-6" strokeWidth={1.5} />
             </span>
             <div>
-              <p className="eyebrow text-gold">Consultation Hours</p>
-              <p className="mt-1 font-serif text-xl sm:text-2xl">
+              <p className="eyebrow text-teal">Consultation Hours</p>
+              <p className="mt-1 font-display text-xl sm:text-2xl">
                 {hours.map((h) => `${h.from.replace(":00", "")} – ${h.to.replace(":00", "")}`).join("  ·  ")}
               </p>
-              <p className="text-sm text-ivory/60">Appointments highly recommended</p>
+              <p className="text-sm text-paper/60">Appointments highly recommended</p>
             </div>
           </div>
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <Button href={links.tel} variant="gold" icon={<Phone className="h-4 w-4" />}>
+            <Button href={links.tel} variant="accent" icon={<Phone className="h-4 w-4" />}>
               Call Now
             </Button>
             <Button href={links.whatsapp(waText)} external variant="outline-light" icon={<MessageCircle className="h-4 w-4" />}>
