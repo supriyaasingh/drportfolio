@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #173d2b;
+  --color-forest-deep: #0f2a1d;
+  --color-forest-soft: #24543d;
+  --color-sage: #a5b69b;
+  --color-sage-light: #dfe6d8;
+  --color-ivory: #f8f6ef;
+  --color-ivory-deep: #efeadc;
+  --color-gold: #c3a66b;
+  --color-gold-deep: #9c8045;
+  --color-charcoal: #242820;
+  --color-muted: #5d6357;
+
+  --font-serif: "Playfair Display Variable", "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans Variable", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgb(23 61 43 / 0.04), 0 12px 32px -12px rgb(23 61 43 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(23 61 43 / 0.05), 0 28px 60px -20px rgb(23 61 43 / 0.32);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+    scroll-padding-top: 88px;
+  }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  body {
+    background: var(--color-ivory);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-forest-deep);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  img {
+    user-select: none;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 2rem;
+    }
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .paper-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.24 0 0 0 0 0.17 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Lenis */
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Native date / time pickers: keep consistent with design */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
