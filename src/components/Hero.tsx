@@ -94,7 +94,7 @@ export function Hero({ ready }: { ready: boolean }) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
   // Scroll-linked parallax
-  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "10%"]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "5%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "-16%"]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const ringsRotate = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 70]);
@@ -281,36 +281,46 @@ export function Hero({ ready }: { ready: boolean }) {
               animate={ready ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 1.4, delay: d + 0.6, ease: EASE }}
             />
-            {/* Panel with reveal */}
-            <motion.div
-              className="absolute inset-0 overflow-hidden rounded-[40px] bg-navy shadow-lift"
+            {/* Doctor photograph — original photo, unaltered; cropped by layout only */}
+            <motion.figure
+              className="group absolute inset-0 m-0 overflow-hidden rounded-[40px] bg-navy shadow-lift"
               initial={{ clipPath: "inset(100% 0% 0% 0% round 40px)" }}
               animate={ready ? { clipPath: "inset(0% 0% 0% 0% round 40px)" } : {}}
               transition={{ duration: 1.4, delay: d, ease: EASE_IN_OUT }}
             >
-              <div className="absolute inset-0 bg-[radial-gradient(110%_75%_at_50%_10%,#1A5B7A_0%,#0B2E42_55%,#071E2C_100%)]" />
-              <div className="absolute inset-0 opacity-60 [background-image:linear-gradient(to_right,rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.06)_1px,transparent_1px)] [background-size:40px_40px]" />
-              <Rings className="absolute left-1/2 top-[8%] w-[88%] -translate-x-1/2 text-teal/25" />
-              <div className="absolute inset-x-0 bottom-[22%] h-16 text-teal/50">
-                <PulseLine inView={false} delay={d + 1} className="h-full w-full" />
-              </div>
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-deep/80 to-transparent" />
-            </motion.div>
-
-            {/* Doctor photograph (real photo, background removed — face untouched) */}
-            <motion.div className="absolute inset-x-0 bottom-0 top-[-6%] z-10 overflow-hidden rounded-b-[40px]" style={{ y: imgY }}>
-              <motion.img
-                src="/images/doctor-hero.webp"
-                alt={`${doctor.name}, ${doctor.title}, wearing a white coat and stethoscope`}
-                width={500}
-                height={980}
-                {...{ fetchpriority: "high" }}
-                className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain object-bottom drop-shadow-[0_30px_40px_rgba(7,30,44,.5)]"
-                initial={{ opacity: 0, y: 80, scale: 1.08 }}
-                animate={ready ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ duration: 1.5, delay: d + 0.45, ease: EASE }}
-              />
-            </motion.div>
+              <motion.div className="absolute inset-x-0 top-[-4%] h-[108%]" style={{ y: imgY }}>
+                <div className="h-full w-full transition-transform duration-[1.4s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.04]">
+                  <picture className="block h-full w-full">
+                    <source srcSet="/images/doctor-hero.webp" type="image/webp" />
+                    <motion.img
+                      src="/images/doctor-hero.jpg"
+                      alt={`${doctor.name}, ${doctor.title}, in a white coat with a stethoscope`}
+                      width={1200}
+                      height={1789}
+                      {...{ fetchpriority: "high" }}
+                      className="h-full w-full object-cover object-[50%_0%]"
+                      initial={{ scale: 1.18, filter: "blur(6px)" }}
+                      animate={ready ? { scale: 1, filter: "blur(0px)" } : {}}
+                      transition={{ duration: 1.8, delay: d + 0.2, ease: EASE }}
+                    />
+                  </picture>
+                </div>
+              </motion.div>
+              {/* Tonal overlays: depth at the base, soft teal light on hover */}
+              <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-navy-deep/70 via-navy-deep/20 to-transparent" />
+              <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_60%_at_50%_0%,rgba(43,179,163,.18),transparent_70%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+              <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[40px] ring-1 ring-inset ring-white/20" />
+              {/* Light sweep across the photo once revealed */}
+              {!reduce && (
+                <motion.div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 skew-x-[-18deg] bg-gradient-to-r from-transparent via-white/25 to-transparent"
+                  initial={{ x: "0%" }}
+                  animate={ready ? { x: "420%" } : {}}
+                  transition={{ duration: 1.6, delay: d + 1.3, ease: EASE_IN_OUT }}
+                />
+              )}
+            </motion.figure>
 
             {/* Rotating badge */}
             <motion.div

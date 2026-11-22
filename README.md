@@ -44,7 +44,7 @@ Also review `hospital.intro` and `hospital.affiliation.text` with the doctor.
 
 ```
 public/images/
-  doctor-hero.webp / .png   White-coat photo from the supplied flyer. Background removed; face and features unchanged.
+  doctor-hero.jpg / .webp   Full-length white-coat photo supplied by the practice (1200×1789, unaltered; cropped by CSS).
   doctor-portrait.webp/.jpg Supplied portrait, cropped to 4:5.
   hiranandani-hospital.jpg/.webp  Hospital photograph supplied by the practice.
   og-image.jpg              1200×630 social sharing image.
@@ -52,7 +52,7 @@ public/favicon.svg          "AS" monogram favicon
 public/apple-touch-icon.png
 ```
 
-The white-coat photo was taken from the promotional flyer, so its resolution is limited (500 px wide). If you have the original high-resolution photo, replace `doctor-hero.webp` and `doctor-hero.png` with a transparent-background version at the same aspect ratio.
+The hero frame crops the full-length photo to a 4:5 portrait from the top using CSS, so the original image file keeps its full proportions.
 
 ## Appointment flow
 
