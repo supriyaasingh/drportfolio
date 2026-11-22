@@ -45,51 +45,10 @@ export const links = {
   mapEmbed: `https://maps.google.com/maps?q=${encodeURIComponent(clinic.mapsQuery)}&z=15&output=embed`,
 };
 
-/**
- * HOSPITAL SECTION — EDIT AND VERIFY BEFORE PUBLISHING
- * ---------------------------------------------------
- * Only the hospital name and city are shown as fact. NO affiliation,
- * employment, role or department is claimed. Each item below (the
- * affiliation statement, website, address/directions) appears ONLY when
- * its `verified` flag is set to true after confirmation.
- */
-export const hospital = {
-  name: "Hiranandani Hospital",
-  city: "Thane",
-  region: "Maharashtra, India",
-  /** Neutral description that avoids claiming any role or department. */
-  intro:
-    "Hiranandani Hospital in Thane is a multi-speciality hospital serving the Thane and wider Mumbai Metropolitan Region.",
-  affiliation: {
-    /** Shown only when verified. Describe the confirmed association exactly. */
-    text: "Dr. Abhay Singh is associated with Hiranandani Hospital, Thane.",
-    verified: false,
-  },
-  /** Shown while the affiliation is unverified. Makes no claim. */
-  pendingNote:
-    "Details of any professional association between Dr. Abhay Singh and this hospital will be added here once verified. For hospital-related queries, please contact the clinic.",
-  /** Photograph supplied by the practice. */
-  image: {
-    src: "/images/hiranandani-hospital.jpg",
-    webp: "/images/hiranandani-hospital.webp",
-    alt: "Hiranandani Hospital, Thane",
-  },
-  website: {
-    url: "https://www.hiranandanihospital.org",
-    verified: false,
-  },
-  address: {
-    // Listed by third-party directories — confirm before enabling.
-    text: "Hiranandani Estate, Off Ghodbunder Road, Patlipada, Thane (West), Maharashtra 400607",
-    verified: false,
-  },
-};
-
 export const navItems = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "services", label: "Services" },
-  { id: "hospital", label: "Hospital" },
   { id: "clinic", label: "Clinic" },
   { id: "contact", label: "Contact" },
 ] as const;

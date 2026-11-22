@@ -10,7 +10,6 @@ import { FAQ } from "./components/FAQ";
 import { FloatingActions } from "./components/FloatingActions";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
-import { Hospital } from "./components/Hospital";
 import { Navbar } from "./components/Navbar";
 import { Philosophy } from "./components/Philosophy";
 import { Preloader } from "./components/Preloader";
@@ -45,7 +44,6 @@ export default function App() {
         <ClinicalServices />
         <Services />
         <Philosophy />
-        <Hospital />
         <ClinicLocation />
         <ConsultationHours />
         <AppointmentForm />
