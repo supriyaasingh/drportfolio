@@ -275,7 +275,7 @@ export function ClinicalServices() {
               <li className="flex gap-3">
                 <Info className="mt-1 h-4 w-4 shrink-0 text-teal" />
                 The clinic does not provide emergency or 24/7 services. In an emergency, call 112 or go to the nearest
-                hospital.
+                emergency department.
               </li>
             </ul>
           </div>

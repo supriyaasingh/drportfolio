@@ -213,6 +213,6 @@ export const faqs = [
   },
   {
     q: "Is this website for emergencies?",
-    a: "No. For a medical emergency, please call 112 or go to the nearest hospital emergency department immediately.",
+    a: "No. For a medical emergency, please call 112 or go to the nearest emergency department immediately.",
   },
 ];
