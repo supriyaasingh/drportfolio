@@ -102,11 +102,11 @@ function ServiceCard({ s, i }: { s: (typeof services)[number]; i: number }) {
 
 export function Services() {
   return (
-    <section id="services" className="paper-grain relative bg-paper py-24 sm:py-32" aria-labelledby="services-title">
+    <section id="care" className="relative bg-white py-24 sm:py-32" aria-labelledby="services-title">
       <div className="container-x">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeading
-            eyebrow="Consultation Services"
+            eyebrow="Areas of Care"
             title="Thorough care for everyday health"
             accentWords={[1, 2]}
             id="services-title"

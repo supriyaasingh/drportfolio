@@ -95,6 +95,106 @@ export const navItems = [
 ] as const;
 
 /**
+ * CLINICAL SERVICES & TREATMENTS — exactly the list provided by the clinic.
+ * Do not add services here that the clinic has not confirmed.
+ */
+export const clinicalServices = [
+  {
+    id: "diagnostic",
+    number: "01",
+    title: "Diagnostic & Basic Clinical Services",
+    short: "Diagnostics",
+    intro: "Simple tests and procedures carried out at the clinic when advised during your consultation.",
+    items: [
+      {
+        icon: "ecg",
+        name: "ECG",
+        full: "Electrocardiogram",
+        description: "A quick, non-invasive recording of the heart's electrical activity, done at the clinic when clinically advised.",
+      },
+      {
+        icon: "hgt",
+        name: "HGT",
+        full: "Blood Glucose Testing",
+        description: "Finger-prick capillary blood glucose test to check your blood sugar level during the visit.",
+      },
+      {
+        icon: "nebulisation",
+        name: "Nebulisation",
+        full: "Inhaled medication",
+        description: "Medication given as a fine mist through a nebuliser, when prescribed by the doctor after assessment.",
+      },
+    ],
+  },
+  {
+    id: "consultation",
+    number: "02",
+    title: "Medical Consultation",
+    short: "Consultation",
+    intro: "Consultations for common and long-term conditions, with treatment planned around your individual assessment.",
+    items: [
+      {
+        icon: "diabetes",
+        name: "Diabetes",
+        full: "Blood sugar care",
+        description: "Consultation and follow-up for diabetes, including review of blood sugar readings and current medicines.",
+      },
+      {
+        icon: "fever",
+        name: "Fever",
+        full: "Evaluation & care",
+        description: "Assessment of fever to understand its likely cause, with treatment or tests advised as appropriate.",
+      },
+      {
+        icon: "cough",
+        name: "Cough",
+        full: "Short-term & persistent",
+        description: "Evaluation of cough, with treatment or further investigation recommended where needed.",
+      },
+      {
+        icon: "asthma",
+        name: "Asthma",
+        full: "Symptom review",
+        description: "Consultation for asthma symptoms, treatment review and guidance on correct inhaler use.",
+      },
+      {
+        icon: "joint",
+        name: "Joint Pain",
+        full: "Pain & stiffness",
+        description: "Assessment of joint pain and stiffness, with treatment advice and referral when required.",
+      },
+      {
+        icon: "bp",
+        name: "Hypertension",
+        full: "High blood pressure",
+        description: "Blood pressure checks, review of treatment and regular follow-up for high blood pressure.",
+      },
+    ],
+  },
+  {
+    id: "care",
+    number: "03",
+    title: "Clinical Care & Treatment",
+    short: "Treatment",
+    intro: "Treatment provided at the clinic only after an appropriate medical assessment by the doctor.",
+    items: [
+      {
+        icon: "iv",
+        name: "IV Fluid Administration",
+        full: "Intravenous fluids",
+        description: "Intravenous fluids given at the clinic when the doctor considers them medically appropriate after assessment.",
+      },
+      {
+        icon: "medication",
+        name: "Medications & Medical Treatment",
+        full: "Prescribed treatment",
+        description: "Medicines prescribed or administered as part of a treatment plan, based on the doctor's assessment.",
+      },
+    ],
+  },
+] as const;
+
+/**
  * Consultation services. Descriptions are deliberately general — adjust
  * them to match the doctor's registered scope of practice.
  */

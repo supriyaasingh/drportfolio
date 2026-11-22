@@ -26,7 +26,7 @@ To test on your phone, connect it to the same Wi-Fi network and open the **Netwo
 
 ## Where to edit content
 
-All facts live in **`src/data/site.ts`**: doctor details, clinic address, phone number, timings, services, FAQ and hospital affiliation. Components read from this file, so you don't need to edit them to change content.
+All facts live in **`src/data/site.ts`**: doctor details, clinic address, phone number, timings, clinical services & treatments (`clinicalServices`), areas of care, FAQ and hospital details. Components read from this file, so you don't need to edit them to change content.
 
 ### Hospital section: verify before publishing
 
@@ -67,7 +67,7 @@ src/
   hooks/useLenis.ts            smooth scroll and scroll-to-section
   hooks/useMediaQuery.ts
   components/
-    Preloader, Navbar, Hero, About, Services, Philosophy, Hospital,
+    Preloader, Navbar, Hero, About, ClinicalServices, Services (Areas of Care), Philosophy, Hospital,
     ClinicLocation, ConsultationHours, AppointmentForm, FAQ, Contact,
     Footer, FloatingActions, PrivacyPolicy
     ui/  Button (magnetic), SplitText, Reveal, SectionHeading,

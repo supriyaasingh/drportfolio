@@ -4,6 +4,7 @@ import { About } from "./components/About";
 import { AppointmentForm } from "./components/AppointmentForm";
 import { ClinicLocation } from "./components/ClinicLocation";
 import { ConsultationHours } from "./components/ConsultationHours";
+import { ClinicalServices } from "./components/ClinicalServices";
 import { Contact } from "./components/Contact";
 import { FAQ } from "./components/FAQ";
 import { FloatingActions } from "./components/FloatingActions";
@@ -41,6 +42,7 @@ export default function App() {
       <main id="main">
         <Hero ready={ready} />
         <About />
+        <ClinicalServices />
         <Services />
         <Philosophy />
         <Hospital />
